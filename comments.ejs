@@ -1,0 +1,62 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheeet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css">
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <ul class="nav navbar-nav">
+                <li class="active"> <a href="/" class="navbar-brand">Task-Dashboard</a></li>
+                <li><a href="/tasks">Home</a></li>
+                <li><a href="/tasks/new">New post</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <% if(!currentUser){ %>
+                    <li><a href="/signup">SignUp</a></li>
+                    <% } else { %>
+                        <li> <a href="#">Signed In as <%= currentUser.username%></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <% } %>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+
+<div class="container align-center">
+    <div class="row">
+
+        <div style="padding-left:90px; width:30%; margin: 0 auto;">
+
+            <h3 style="text-align:center">Add New Comments to
+                <%= task.title%>
+            </h3>
+            <form action="/tasks/<%= task._id %>/comments" method="POST">
+                <div class="group">
+                    <input type="text" class="form-control" name="task[text]" placeholder="text">
+                </div><br>
+                <div class="group">
+                    <input type="text" class="form-control" name="task[author]" placeholder="author">
+                </div><br>
+                <div class="group">
+                    <input type="text" class="form-control" name="task[points]" placeholder="points">
+                </div><br>
+                <div class="group">
+                    <input type="submit" class="form-control btn btn-primary">
+                </div><br>
+                <a href="/tasks">Go back</a>
+            </form>
+
+        </div>
+    </div>
+</div>
+</div>

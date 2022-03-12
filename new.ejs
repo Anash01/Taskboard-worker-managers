@@ -1,0 +1,73 @@
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheeet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.1.4/semantic.min.css">
+
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+            <ul class="nav navbar-nav">
+                <li class="active"> <a href="#" class="navbar-brand">Task-Dashboard</a></li>
+                <li><a href="/tasks">Home</a></li>
+                <li><a href="/tasks/new">New post</a></li>
+            </ul>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+                <% if(!currentUser){ %>
+                    <li><a href="/signup">SignUp</a></li>
+                    <% } else { %>
+                        <li> <a href="#">Signed In as <%= currentUser.username%></a></li>
+                        <li><a href="/logout">Logout</a></li>
+                        <% } %>
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+    <% if (error && error.length > 0) { %>
+        <div class="alert alert-danger" role="alert">
+            <%= error %>
+        </div>
+        <% } %>
+            <% if (success && success.length>0) { %>
+                <div class="alert alert-success" role="alert">
+                    <%= success %>
+                </div>
+                <% } %>
+</div>
+
+<div class="container align-center">
+    <div class="row">
+
+        <div style="padding-left:50px; width:50%; margin: 0 auto;">
+
+            <h2 style="text-align:center">New Task-Post</h2>
+            <form action="/tasks" method="POST">
+                <div class="group">
+                    <label>Title</label>
+                    <input type="text" class="form-control" name="task[title]" placeholder="title">
+                </div><br>
+                <div class="group">
+                    <label>Image</label><br>
+                    <input type="text" class="form-control" name="task[image]" placeholder="image Url">
+                </div><br>
+                <div class="group">
+                    <label>Description</label><br>
+                    <textarea name="task[body]" rows="9" cols="74"></textarea>
+                </div><br>
+                <div class="form-group">
+                    <input type="submit" class="btn btn-primary">
+                </div><br>
+            </form>
+        </div>
+    </div>
+</div>
+</div>
